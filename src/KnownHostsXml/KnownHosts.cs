@@ -111,19 +111,19 @@ public static class KnownHosts
     /// <exception cref="SecurityException"/>
     public static void WriteRecords(KnownHost[] hosts, bool indent = false)
     {
+        if (hosts is null)
+        {
+            throw new ArgumentNullException(nameof(hosts));
+        }
+
         DirectoryInfo directory = new(DirectoryName);
         if (!directory.Exists)
         {
             directory.Create();
         }
 
-        FileInfo file = new(FileName);
-        if (!file.Exists)
-        {
-            file.Create().Dispose();
-        }
-
-        WriteRecords(FileName, hosts, indent);
+        using FileStream stream = new(FileName, FileMode.Create, FileAccess.Write, FileShare.Read);
+        WriteRecords(stream, hosts, indent);
     }
 
     /// <summary>
@@ -158,6 +158,20 @@ public static class KnownHosts
         }
 
         using FileStream stream = new(path, FileMode.Create, FileAccess.Write, FileShare.Read);
+        WriteRecords(stream, hosts, indent);
+    }
+
+    /// <summary>
+    /// Writes the specified <see cref="KnownHost"/> objects to the stream.
+    /// </summary>
+    /// <param name="stream">The stream to write to.</param>
+    /// <param name="hosts">An array of the <see cref="KnownHost"/> objects to be written.</param>
+    /// <param name="indent">
+    /// <see langword="true"/> if individual records have new lines and indent; otherwise, <see langword="false"/>.
+    /// </param>
+    /// <exception cref="InvalidOperationException"/>
+    private static void WriteRecords(Stream stream, KnownHost[] hosts, bool indent = false)
+    {
         using XmlWriter writer = XmlWriter.Create(stream, new XmlWriterSettings() { Indent = indent });
 
         XmlSerializer serializer = new(typeof(KnownHost[]));
