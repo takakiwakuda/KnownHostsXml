@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5BA1BBB2-4EA2-4046-892D-B12211056970}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnownHostsXml", "src\KnownHostsXml\KnownHostsXml.csproj", "{D8D6CC2F-73F9-4AE9-B80F-40952B35867E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B18542BF-36E8-4D2C-B355-3A32376E0518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnownHostsXml.Tests", "test\KnownHostsXml.Tests\KnownHostsXml.Tests.csproj", "{BF2BA468-F548-4161-A9FF-1C57FF84797D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8D6CC2F-73F9-4AE9-B80F-40952B35867E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D6CC2F-73F9-4AE9-B80F-40952B35867E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D6CC2F-73F9-4AE9-B80F-40952B35867E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D6CC2F-73F9-4AE9-B80F-40952B35867E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2BA468-F548-4161-A9FF-1C57FF84797D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2BA468-F548-4161-A9FF-1C57FF84797D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2BA468-F548-4161-A9FF-1C57FF84797D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2BA468-F548-4161-A9FF-1C57FF84797D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8D6CC2F-73F9-4AE9-B80F-40952B35867E} = {5BA1BBB2-4EA2-4046-892D-B12211056970}
+		{BF2BA468-F548-4161-A9FF-1C57FF84797D} = {B18542BF-36E8-4D2C-B355-3A32376E0518}
+	EndGlobalSection
+EndGlobal
