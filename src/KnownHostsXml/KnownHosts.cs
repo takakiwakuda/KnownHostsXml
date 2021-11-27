@@ -104,6 +104,7 @@ public static class KnownHosts
     /// <param name="indent">
     /// <see langword="true"/> if individual records have new lines and indent; otherwise, <see langword="false"/>.
     /// </param>
+    /// <exception cref="ArgumentNullException"><paramref name="hosts"/> is <see langword="null"/>.</exception>
     /// <exception cref="InvalidOperationException"/>
     /// <exception cref="UnauthorizedAccessException"/>
     /// <exception cref="IOException"/>
@@ -135,7 +136,9 @@ public static class KnownHosts
     /// <see langword="true"/> if individual records have new lines and indent; otherwise, <see langword="false"/>.
     /// </param>
     /// <exception cref="ArgumentException"/>
-    /// <exception cref="ArgumentNullException"><paramref name="path"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="path"/> or <paramref name="hosts"/> is <see langword="null"/>.
+    /// </exception>
     /// <exception cref="InvalidOperationException"/>
     /// <exception cref="NotSupportedException"/>
     /// <exception cref="UnauthorizedAccessException"/>
