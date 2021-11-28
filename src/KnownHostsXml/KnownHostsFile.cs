@@ -85,7 +85,7 @@ public static class KnownHostsFile
 
         using FileStream stream = new(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         using XmlReader reader = XmlReader.Create(stream);
-        XmlSerializer serializer = new(typeof(KnownHost[]));
+        XmlSerializer serializer = new(typeof(KnownHosts));
 
         object? hosts = serializer.Deserialize(reader);
         if (hosts is null)
@@ -93,7 +93,7 @@ public static class KnownHostsFile
             return Array.Empty<KnownHost>();
         }
 
-        return (KnownHost[])hosts;
+        return ((KnownHosts)hosts).Hosts;
     }
 
     /// <summary>
@@ -173,8 +173,7 @@ public static class KnownHostsFile
     private static void WriteRecords(Stream stream, KnownHost[] hosts, bool indent)
     {
         using XmlWriter writer = XmlWriter.Create(stream, new XmlWriterSettings() { Indent = indent });
-
-        XmlSerializer serializer = new(typeof(KnownHost[]));
-        serializer.Serialize(writer, hosts);
+        XmlSerializer serializer = new(typeof(KnownHosts));
+        serializer.Serialize(writer, new KnownHosts() { Hosts = hosts });
     }
 }
