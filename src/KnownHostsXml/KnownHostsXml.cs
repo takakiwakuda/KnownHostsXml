@@ -10,7 +10,7 @@ namespace KnownHostsXml;
 /// <summary>
 /// Provides utilities to read and write XML-based known_hosts.
 /// </summary>
-public static class KnownHosts
+public static class KnownHostsXml
 {
     /// <summary>
     /// Gets the absolute path of the ssh directory for the current user.
@@ -170,7 +170,7 @@ public static class KnownHosts
     /// <see langword="true"/> if individual records have new lines and indent; otherwise, <see langword="false"/>.
     /// </param>
     /// <exception cref="InvalidOperationException"/>
-    private static void WriteRecords(Stream stream, KnownHost[] hosts, bool indent = false)
+    private static void WriteRecords(Stream stream, KnownHost[] hosts, bool indent)
     {
         using XmlWriter writer = XmlWriter.Create(stream, new XmlWriterSettings() { Indent = indent });
 
