@@ -10,7 +10,7 @@ namespace KnownHostsXml;
 /// <summary>
 /// Provides utilities to read and write XML-based known_hosts.
 /// </summary>
-public static class KnownHostsXml
+public static class KnownHostsFile
 {
     /// <summary>
     /// Gets the absolute path of the ssh directory for the current user.
@@ -31,26 +31,26 @@ public static class KnownHostsXml
     /// <summary>
     /// Gets the file name of the known_hosts for the current user.
     /// </summary>
-    public static string FileName
+    public static string FullName
     {
         get
         {
-            if (_fileName is null)
+            if (_fullName is null)
             {
-                _fileName = Path.Combine(DirectoryName, "known_hosts.xml");
+                _fullName = Path.Combine(DirectoryName, "known_hosts.xml");
             }
 
-            return _fileName;
+            return _fullName;
         }
     }
 
     private static string? _directoryName;
-    private static string? _fileName;
+    private static string? _fullName;
 
     /// <summary>
-    /// Reads an array of the <see cref="KnownHost"/> objects at the <see cref="FileName"/>.
+    /// Reads an array of the <see cref="KnownHost"/> objects at the <see cref="FullName"/>.
     /// </summary>
-    /// <returns>An array of the <see cref="KnownHost"/> objects for the <see cref="FileName"/>.</returns>
+    /// <returns>An array of the <see cref="KnownHost"/> objects for the <see cref="FullName"/>.</returns>
     /// <exception cref="InvalidOperationException"/>
     /// <exception cref="UnauthorizedAccessException"/>
     /// <exception cref="DirectoryNotFoundException"/>
@@ -59,7 +59,7 @@ public static class KnownHostsXml
     /// <exception cref="SecurityException"/>
     public static KnownHost[] ReadRecords()
     {
-        return ReadRecords(FileName);
+        return ReadRecords(FullName);
     }
 
     /// <summary>
@@ -97,9 +97,9 @@ public static class KnownHostsXml
     }
 
     /// <summary>
-    /// Writes the specified <see cref="KnownHost"/> objects to the <see cref="FileName"/>.
+    /// Writes the specified <see cref="KnownHost"/> objects to the <see cref="FullName"/>.
     /// </summary>
-    /// <remarks>The <see cref="FileName"/> will be overwritten with the <paramref name="hosts"/>.</remarks>
+    /// <remarks>The <see cref="FullName"/> will be overwritten with the <paramref name="hosts"/>.</remarks>
     /// <param name="hosts">An array of the <see cref="KnownHost"/> objects to be written.</param>
     /// <param name="indent">
     /// <see langword="true"/> if individual records have new lines and indent; otherwise, <see langword="false"/>.
@@ -122,7 +122,7 @@ public static class KnownHostsXml
             directory.Create();
         }
 
-        using FileStream stream = new(FileName, FileMode.Create, FileAccess.Write, FileShare.Read);
+        using FileStream stream = new(FullName, FileMode.Create, FileAccess.Write, FileShare.Read);
         WriteRecords(stream, hosts, indent);
     }
 

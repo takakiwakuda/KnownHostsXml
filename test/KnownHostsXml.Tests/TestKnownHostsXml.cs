@@ -24,7 +24,7 @@ public class TestKnownHosts
             }
         };
 
-        KnownHostsXml.WriteRecords(path, hosts, true);
-        Assert.Equal<KnownHost>(hosts, KnownHostsXml.ReadRecords(path));
+        KnownHostsFile.WriteRecords(path, hosts, true);
+        Assert.Equal<KnownHost>(hosts, KnownHostsFile.ReadRecords(path));
     }
 }
